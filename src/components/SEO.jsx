@@ -7,7 +7,7 @@ const SEO = ({
   description = "A modern, responsive dashboard application with real-time progress tracking and interactive UI components",
   keywords = "dashboard, progress tracking, nextjs, react, framer motion, tailwind css",
   ogImage = "/og-image.png",
-  url = "https://weframetech.com"
+  url = "https://we-frame-tech-zeta.vercel.app"
 }) => {
   return (
     <Head>

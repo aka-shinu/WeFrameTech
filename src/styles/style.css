@@ -22,7 +22,7 @@
 }
 .title,
 .dm-sans {
-  font-family: 'Inter', sans-serif;
+  /* ; */
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,7 +32,7 @@
   line-height: 1.3;
 }
 .inter{
-    font-family: 'Inter', sans-serif;
+    /* ; */
 }
 .number{
     font-variant-numeric: tabular-nums;

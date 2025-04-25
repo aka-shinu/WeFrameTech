@@ -1,0 +1,21 @@
+{
+  "name": "WeFrameTech Dashboard",
+  "short_name": "WeFrameTech",
+  "description": "A modern, responsive dashboard application with real-time progress tracking",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#279DD4",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+} 

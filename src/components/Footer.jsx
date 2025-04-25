@@ -1,8 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
 const Footer = () => {
   const { ref, inView } = useInView({
