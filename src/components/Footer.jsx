@@ -40,7 +40,7 @@ const Footer = () => {
 
             <div className="relative">
               <img
-                src="https://randomuser.me/api/portraits/men/20.jpg"
+                src="/avatars/mainAvatar2.webp"
                 alt="Profile"
                 className="w-14 h-14 rounded-full object-cover ring-2 ring-white hover:ring-blue-400 transition duration-300"
               />
@@ -75,7 +75,7 @@ const Footer = () => {
 
           <div className="relative">
             <img
-              src="https://randomuser.me/api/portraits/men/21.jpg"
+              src="/avatars/mainAvatar3.webp"
               alt="Profile"
               className="w-14 h-14 rounded-full object-cover ring-2 ring-white hover:ring-blue-400 transition duration-300"
             />
@@ -106,7 +106,6 @@ const Footer = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="flex flex-col items-center justify-center  h-full  bg-gray-50 px-4 xl:py-0 py-20 text-center"
         >
-          {/* Logo */}
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -122,7 +121,7 @@ const Footer = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g clip-path="url(#clip0_0_7768)">
+                <g clipPath="url(#clip0_0_7768)">
                   <path
                     d="M21.9433 0.222656C18.3332 0.222656 14.8709 1.65679 12.3181 4.20957L3.98692 12.5408C1.43413 15.0935 0 18.5558 0 22.166C0 29.6839 6.09439 35.7782 13.6122 35.7782C17.2224 35.7782 20.6847 34.344 23.2375 31.7912L29.0002 26.0285C29.0002 26.0284 29.0003 26.0286 29.0002 26.0285L45.7908 9.23789C47.01 8.0187 48.6636 7.33377 50.3878 7.33377C53.2744 7.33377 55.7217 9.21514 56.5702 11.8186L61.8693 6.5195C59.4519 2.73328 55.213 0.222656 50.3878 0.222656C46.7776 0.222656 43.3153 1.65679 40.7625 4.20957L18.2092 26.763C16.99 27.9822 15.3364 28.6671 13.6122 28.6671C10.0217 28.6671 7.11111 25.7565 7.11111 22.166C7.11111 20.4418 7.79604 18.7882 9.01523 17.569L17.3464 9.23789C18.5656 8.0187 20.2191 7.33377 21.9433 7.33377C24.8301 7.33377 27.2773 9.21523 28.1257 11.8188L33.4249 6.51963C31.0075 2.73335 26.7687 0.222656 21.9433 0.222656Z"
                     fill="#2FBDFF"
@@ -146,12 +145,10 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Title */}
           <h1 className="text-2xl  md:text-3xl font-medium  text-gray-800 mb-8">
             Welcome to the AI Chat Assistant
           </h1>
 
-          {/* Input box */}
           <div className="flex  items-center w-[90%] bg-white border border-gray-300 rounded-lg shadow-sm focus-within:ring-2 focus-within:ring-blue-300 transition overflow-hidden">
             <input
               type="text"
@@ -162,6 +159,7 @@ const Footer = () => {
             />
             <motion.button
               whileTap={{ scale: 0.9 }}
+              aria-label="Send"
               whileHover={{ scale: 1.1 }}
               className="px-4 py-3 transition duration-300"
             >

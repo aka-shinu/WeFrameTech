@@ -1,21 +1,115 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import Footer from "./Footer";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+
 const avatars = [
-  "https://randomuser.me/api/portraits/women/1.jpg",
-  "https://randomuser.me/api/portraits/men/2.jpg",
-  "https://randomuser.me/api/portraits/women/3.jpg",
-  "https://randomuser.me/api/portraits/women/4.jpg",
-  "https://randomuser.me/api/portraits/women/5.jpg",
+  "/avatars/woman1.webp",
+  "/avatars/man2.webp",
+  "/avatars/woman3.webp",
+  "/avatars/woman4.webp",
+  "/avatars/woman5.webp",
 ];
+
 const man = [
-  "https://randomuser.me/api/portraits/men/4.jpg",
-  "https://randomuser.me/api/portraits/men/5.jpg",
-  "https://randomuser.me/api/portraits/men/6.jpg",
+  "/avatars/man4.webp",
+  "/avatars/man5.webp",
+  "/avatars/man6.webp",
 ];
+
+// Memoize the static content
+const TotalFranchiseesSection = memo(({ number, percentage, avatars, totalCount, visibleCount, stages, containerVariants, avatarVariants, containerVariants2, itemVariants }) => (
+  <div className="ba h-fit">
+    <div className="ml-auto mr-auto w-[90%] flex flex-col h-fit pb-5 space-y-2">
+      <div className="title mt-5 text-[110%]">
+        Total Franchisees Onboard
+      </div>
+      <div className="flex xl:flex-row flex-col-reverse">
+        <div className="flex items-center xl:w-[60%] space-x-5">
+          <div className="number text-[200%] font-bold">{number}</div>
+          <motion.div
+            className="flex items-center text-[90%] pr-2 pl-2 xl:ml-[unset] xl:mt-[unset] ml-auto mt-auto w-fit h-fit rounded-full border-2 border-[#079455] text-[#079455] text-sm font-medium gap-1"
+            initial={{ opacity: 1, scale: 1 }}
+          >
+            <svg
+              className="w-3 h-3"
+              viewBox="0 0 12 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11 1.5L7.06568 5.43432C6.86768 5.63232 6.76867 5.73133 6.65451 5.76842C6.55409 5.80105 6.44591 5.80105 6.34549 5.76842C6.23133 5.73133 6.13232 5.63232 5.93431 5.43431L4.56568 4.06568C4.36768 3.86768 4.26867 3.76867 4.15451 3.73158C4.05409 3.69895 3.94591 3.69895 3.84549 3.73158C3.73133 3.76867 3.63232 3.86768 3.43431 4.06569L1 6.5M11 1.5H7.5M11 1.5V5"
+                stroke="#079455"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span>{percentage}%</span>
+          </motion.div>
+        </div>
+        <motion.div
+          className="flex items-center xl:ml-auto mr-auto ml-auto"
+          variants={containerVariants}
+          initial="visible"
+        >
+          {avatars.map((src, index) => (
+            <motion.img
+              key={index}
+              src={src}
+              alt={`avatar-${index}`}
+              className="w-8 h-8 rounded-full border-2 border-white -ml-2 first:ml-0"
+              variants={avatarVariants}
+              initial="visible"
+            />
+          ))}
+          <motion.div
+            className="w-8 h-8 rounded-full border-2 border-white -ml-2 bg-gray-100 text-gray-600 text-sm font-medium flex items-center justify-center"
+            variants={avatarVariants}
+            initial="visible"
+          >
+            +{totalCount - visibleCount}
+          </motion.div>
+        </motion.div>
+      </div>
+      <div className="w-full xl:h-3 h-2 space-x-4 grid grid-cols-[30%_25%_45%]">
+        <div className="rounded-[3px] bg-[#1F7EAA]"></div>
+        <div className="rounded-[3px] bg-[#2FBDFF]"></div>
+        <div className="rounded-[3px] bg-[#97DEFF]"></div>
+      </div>
+      <div className="mt-3 inter xl:text-[100%] text-[#475467] w-full h-fit rounded-xl">
+        <motion.div
+          className="space-y-2 !text-[#475467]"
+          initial="visible"
+          variants={containerVariants2}
+        >
+          {stages.map((stage, index) => (
+            <motion.div
+              key={index}
+              className="flex items-center justify-between xl:text-sm text-[80%]"
+              variants={itemVariants}
+              initial="visible"
+            >
+              <div className="flex items-center gap-2">
+                <span
+                  className="w-3 h-3 rounded-full"
+                  style={{ backgroundColor: stage.color }}
+                />
+                <span>{stage.name}</span>
+              </div>
+              <span className="font-semibold xl:text-lg text-[100%] text-g">
+                {stage.count.toString().padStart(2, "0")}
+              </span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  </div>
+));
+
 const Dashboard = () => {
   const leads = [
     { name: "Wade Warren", stage: "Initial Inquiry" },
@@ -71,42 +165,42 @@ const Dashboard = () => {
     },
   };
   const containerVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        staggerChildren: 0.05,
+        delayChildren: 0,
         ease: "easeOut",
       },
     },
   };
   const avatarVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 1, scale: 1 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.3, ease: "easeOut" },
+      transition: { duration: 0.2, ease: "easeOut" },
     },
   };
   const containerVariants2 = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
+        staggerChildren: 0.05,
+        delayChildren: 0,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
+    hidden: { opacity: 1, y: 0 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { ease: "easeOut", duration: 0.4 },
+      transition: { ease: "easeOut", duration: 0.2 },
     },
   };
   const motionValue = useMotionValue(0);
@@ -328,95 +422,18 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="flex flex-col space-y-5">
-            <div className="ba h-fit">
-              <div className="ml-auto mr-auto w-[90%] flex flex-col h-fit pb-5 space-y-2">
-                <div className="title mt-5  text-[110%]">
-                  Total Franchisees Onboard
-                </div>
-                <div className="flex xl:flex-row flex-col-reverse">
-                  <div className="flex items-center xl:w-[60%] space-x-5">
-                    <div className="number text-[200%] font-bold">14</div>
-                    <motion.div
-                      className="flex items-center  text-[90%] pr-2 pl-2 xl:ml-[unset] xl:mt-[unset] ml-auto  mt-auto w-fit h-fit rounded-full border-2 border-[#079455] text-[#079455] text-sm font-medium gap-1 "
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                    >
-                      <svg
-                        className="w-3 h-3"
-                        viewBox="0 0 12 8"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M11 1.5L7.06568 5.43432C6.86768 5.63232 6.76867 5.73133 6.65451 5.76842C6.55409 5.80105 6.44591 5.80105 6.34549 5.76842C6.23133 5.73133 6.13232 5.63232 5.93431 5.43431L4.56568 4.06568C4.36768 3.86768 4.26867 3.76867 4.15451 3.73158C4.05409 3.69895 3.94591 3.69895 3.84549 3.73158C3.73133 3.76867 3.63232 3.86768 3.43431 4.06569L1 6.5M11 1.5H7.5M11 1.5V5"
-                          stroke="#079455"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-
-                      <span>7.4%</span>
-                    </motion.div>
-                  </div>
-                  <motion.div
-                    className="flex items-center xl:ml-auto mr-auto ml-auto"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
-                    {avatars.map((src, index) => (
-                      <motion.img
-                        key={index}
-                        src={src}
-                        alt={`avatar-${index}`}
-                        className="w-8 h-8 rounded-full border-2 border-white -ml-2 first:ml-0"
-                        variants={avatarVariants}
-                      />
-                    ))}
-                    <motion.div
-                      className="w-8 h-8 rounded-full border-2 border-white -ml-2 bg-gray-100 text-gray-600 text-sm font-medium flex items-center justify-center"
-                      variants={avatarVariants}
-                    >
-                      +{totalCount - visibleCount}
-                    </motion.div>
-                  </motion.div>
-                </div>
-                <div className="w-full xl:h-3 h-2 space-x-4 grid grid-cols-[30%_25%_45%]">
-                  <div className="rounded-[3px] bg-[#1F7EAA]"></div>
-                  <div className="rounded-[3px] bg-[#2FBDFF]"></div>
-                  <div className="rounded-[3px] bg-[#97DEFF]"></div>
-                </div>
-                <div className="mt-3 inter xl:text-[100%]  text-[#475467] w-full h-fit rounded-xl">
-                  <motion.div
-                    className="space-y-2 !text-[#475467]"
-                    initial="hidden"
-                    animate="visible"
-                    variants={containerVariants2}
-                  >
-                    {stages.map((stage, index) => (
-                      <motion.div
-                        key={index}
-                        className="flex items-center justify-between xl:text-sm text-[80%]"
-                        variants={itemVariants}
-                      >
-                        <div className="flex items-center gap-2">
-                          <span
-                            className="w-3 h-3 rounded-full"
-                            style={{ backgroundColor: stage.color }}
-                          />
-                          <span>{stage.name}</span>
-                        </div>
-                        <span className="font-semibold xl:text-lg text-[100%] text-g">
-                          {stage.count.toString().padStart(2, "0")}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </div>
-              </div>
-            </div>
+            <TotalFranchiseesSection 
+              number={14}
+              percentage={7.4}
+              avatars={avatars}
+              totalCount={totalCount}
+              visibleCount={visibleCount}
+              stages={stages}
+              containerVariants={containerVariants}
+              avatarVariants={avatarVariants}
+              containerVariants2={containerVariants2}
+              itemVariants={itemVariants}
+            />
             <div className="ba h-fit">
               <div className="ml-auto mr-auto w-[90%] flex flex-col h-fit pb-2 space-y-2">
                 <div className="title mt-5  text-[110%]">
@@ -440,9 +457,9 @@ const Dashboard = () => {
                         <path
                           d="M11 1.5L7.06568 5.43432C6.86768 5.63232 6.76867 5.73133 6.65451 5.76842C6.55409 5.80105 6.44591 5.80105 6.34549 5.76842C6.23133 5.73133 6.13232 5.63232 5.93431 5.43431L4.56568 4.06568C4.36768 3.86768 4.26867 3.76867 4.15451 3.73158C4.05409 3.69895 3.94591 3.69895 3.84549 3.73158C3.73133 3.76867 3.63232 3.86768 3.43431 4.06569L1 6.5M11 1.5H7.5M11 1.5V5"
                           stroke="#079455"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
 
@@ -483,7 +500,7 @@ const Dashboard = () => {
                     <div className="number xl:text-[200%] text-[150%] font-bold">10%</div>
                     <div className="w-full ml-auto ">
                       <div className="w-25  flex justify-center items-center ml-auto">
-                        <img src="/image.webp" alt="" className="w-9 h-9"/>
+                        <img src="/image.webp" alt="" width={36} height={36}/>
                       </div>
                     </div>
 
@@ -503,7 +520,7 @@ const Dashboard = () => {
                         height="23"
                         rx="11.5"
                         fill="#D5F2FF"
-                        fill-opacity="0.5"
+                        fillOpacity="0.5"
                       />
                       <rect
                         x="0.5"
@@ -557,7 +574,9 @@ const Dashboard = () => {
                         <img
                           src={man[index % man.length]}
                           alt={lead.name}
-                          className="w-8 h-8 rounded-full object-cover"
+                          width={32}
+                          height={32}
+                          className="rounded-full object-cover"
                         />
                         <span className="text-gray-800 xl:text-[100%] text-[85%] font-medium">
                           {lead.name}
