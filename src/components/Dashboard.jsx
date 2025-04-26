@@ -471,16 +471,16 @@ const Dashboard = () => {
                   </div>
                 </div>
                 <div className="inter   text-[#475467] w-full h-full rounded-xl">
-                  <div className="w-full mt-5  space-x-5 text-center h-fit grid grid-cols-2">
-                    <div className="p-4 bg-(--card-color) rounded-[5px] space-y-5">
+                  <div className="w-full m-2   space-x-5 text-center h-fit grid grid-cols-2">
+                    <div className="h-fit p-6 bg-(--card-color) rounded-[5px] space-y-3">
                       <div className="title xl:text-[100%] text-[90%]">Target</div>
-                      <div className="number xl:text-[130%] text-[100%] text-(--text-heading-color)  font-bold">
+                      <div className="number xl:text-[120%] text-[100%] text-(--text-heading-color)  font-bold">
                         $500,000
                       </div>
                     </div>
-                    <div className="p-4 bg-(--card-color) rounded-[5px] space-y-5">
+                    <div className="h-fit p-6 bg-(--card-color) rounded-[5px] space-y-3">
                       <div className="title xl:text-[100%] text-[90%] ">Current</div>
-                      <div className="number xl:text-[130%] text-[100%] text-(--text-heading-color)  font-bold">
+                      <div className="number xl:text-[120%] text-[100%] text-(--text-heading-color)  font-bold">
                         $450,000
                       </div>
                     </div>
@@ -545,7 +545,7 @@ const Dashboard = () => {
                       </div>
                       <div className="col-span-2 grid xl:grid-cols-[5%_95%] grid-cols-[7%_93%]">
                         <div className="dot !m-[0] translate-y-1"></div>
-                        <div className="xl:text-[90%] text-[70%] ft font-light text-(--text-card-color)">
+                        <div className="xl:text-[90%] text-[70%] ft font-medium text-(--text-card-color)">
                           Franchisees are requesting more detailed training
                           materials.
                         </div>

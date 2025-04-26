@@ -29,8 +29,8 @@ const Layout = ({ children }) => {
 
   return (
     <div className="h-screen flex flex-col lg:flex-row">
+      <SEO />
       {/* Mobile Header */}
-      <SEO/>
       <div className="xl:hidden fixed top-0 left-0 w-full bg-white z-50">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <button
@@ -88,9 +88,7 @@ const Layout = ({ children }) => {
                 key={index}
                 className={
                   "ll z-50 cursor-pointer px-4 py-2 rounded-sm " +
-                  (index == 0
-                    ? "text-[#2FBCFE] bg-[#FFFFFF1A]"
-                    : "ll2")
+                  (index == 0 ? "text-[#2FBCFE] bg-[#FFFFFF1A]" : "ll2")
                 }
               >
                 {v}
@@ -109,7 +107,7 @@ const Layout = ({ children }) => {
 
       {/* Desktop Sidebar */}
       <div className="hidden border xl:flex flex-col xl:w-1/6 xl:text-[100%] text-[80%] bg-(--navbar) text-(--navbar-text) h-full">
-        <div className="w-full p-6 flex flex-col space-y-3 mt-auto h-[95%]">
+        <div className="w-full p-6 flex flex-col space-y-3 mt-11 h-[95%]">
           {navs.map((v, index) => (
             <div
               key={index}
