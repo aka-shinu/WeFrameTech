@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 const mainAvatar = "/avatars/mainAvatar.webp";
+import SEO from "./SEO";
 const Layout = ({ children }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +14,6 @@ const Layout = ({ children }) => {
     "Targets",
     "Zee Sales Targets",
     "MAI Settings",
-    "Pending Questions",
   ];
 
   useEffect(() => {
@@ -30,6 +30,7 @@ const Layout = ({ children }) => {
   return (
     <div className="h-screen flex flex-col lg:flex-row">
       {/* Mobile Header */}
+      <SEO/>
       <div className="xl:hidden fixed top-0 left-0 w-full bg-white z-50">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <button
@@ -67,34 +68,47 @@ const Layout = ({ children }) => {
               <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
               <circle cx="12" cy="12" r="3" />
             </svg>
-            <img className="rounded-full" width={32} height={32} src={mainAvatar} alt="User" />
+            <img
+              className="rounded-full"
+              width={32}
+              height={32}
+              src={mainAvatar}
+              alt="User"
+            />
           </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="xl:hidden fixed top-14 left-0 w-full h-fit  bg-(--navbar) text-(--navbar-text) z-40 p-4 pb-20">
+        <div className="xl:hidden fixed flex-col top-14 left-0 w-full h-fit  bg-(--navbar) text-(--navbar-text) z-40 p-4 pb-12">
           <div className="space-y-3">
             {navs.map((v, index) => (
               <div
                 key={index}
                 className={
-                  "hover:bg-[#eff5f9] cursor-pointer px-4 py-2 rounded-sm " +
+                  "ll z-50 cursor-pointer px-4 py-2 rounded-sm " +
                   (index == 0
                     ? "text-[#2FBCFE] bg-[#FFFFFF1A]"
-                    : "text-(--navbar-text)")
+                    : "ll2")
                 }
               >
                 {v}
               </div>
             ))}
+            <div className="ll pp w-full  space-x-10 cursor-pointer px-4 py-2 rounded-sm text-(--navbar-text) hover:text-(--navbar)">
+              Pending Questions
+              <div className="flex ml-auto items-center  justify-center w-6 h-6 rounded-full bg-[#c9e7f5] text-[#165675] text-[100%] font-bold">
+                3
+              </div>
+            </div>
           </div>
+          <div className="h-[5%] m-6 mt-10 font-light">Logout</div>
         </div>
       )}
 
       {/* Desktop Sidebar */}
-      <div className="hidden border xl:flex xl:w-1/6 xl:text-[100%] text-[80%] bg-(--navbar) text-(--navbar-text) h-full">
+      <div className="hidden border xl:flex flex-col xl:w-1/6 xl:text-[100%] text-[80%] bg-(--navbar) text-(--navbar-text) h-full">
         <div className="w-full p-6 flex flex-col space-y-3 mt-auto h-[95%]">
           {navs.map((v, index) => (
             <div
@@ -109,7 +123,14 @@ const Layout = ({ children }) => {
               {v}
             </div>
           ))}
+          <div className="hover:bg-[#eff5f9] pp space-x-10 cursor-pointer px-4 py-2 rounded-sm text-(--navbar-text) hover:text-(--navbar)">
+            Pending Questions
+            <div className="flex items-center translate-x-5 justify-center w-6 h-6 rounded-full bg-[#c9e7f5] text-[#165675] text-[100%] font-bold">
+              3
+            </div>
+          </div>
         </div>
+        <div className="h-[5%] m-6 font-light">Logout</div>
       </div>
 
       {/* Main Content */}

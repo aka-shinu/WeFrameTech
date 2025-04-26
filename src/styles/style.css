@@ -79,3 +79,15 @@
   letter-spacing: -0.2px;
   line-height: 1.5;
 }
+.pp{
+  display: flex;
+}
+.ll:hover{
+  background-color: #eff5f9;
+}
+.ll2{
+  color: var(--navbar-text);
+}
+.ll2:hover{
+  color: var(--navbar);
+}

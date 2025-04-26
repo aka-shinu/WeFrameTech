@@ -30,7 +30,7 @@ const TotalFranchiseesSection = memo(({ number, percentage, avatars, totalCount,
         <div className="flex items-center xl:w-[60%] space-x-5">
           <div className="number text-[200%] font-bold">{number}</div>
           <motion.div
-            className="flex items-center text-[90%] pr-2 pl-2 xl:ml-[unset] xl:mt-[unset] ml-auto mt-auto w-fit h-fit rounded-full border-2 border-[#079455] text-[#079455] text-sm font-medium gap-1"
+            className="flex items-center text-[90%] py-[1px] pr-2 pl-2 xl:ml-[unset] xl:mt-[unset] ml-auto mt-auto w-fit h-fit rounded-full border-2 border-[#079455] text-[#079455] text-sm font-medium gap-1"
             initial={{ opacity: 1, scale: 1 }}
           >
             <svg
@@ -47,7 +47,7 @@ const TotalFranchiseesSection = memo(({ number, percentage, avatars, totalCount,
                 strokeLinejoin="round"
               />
             </svg>
-            <span>{percentage}%</span>
+            <span >{percentage}%</span>
           </motion.div>
         </div>
         <motion.div
@@ -92,7 +92,7 @@ const TotalFranchiseesSection = memo(({ number, percentage, avatars, totalCount,
               variants={itemVariants}
               initial="visible"
             >
-              <div className="flex items-center gap-2">
+              <div className="flex font-bold items-center gap-2">
                 <span
                   className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: stage.color }}
@@ -443,7 +443,7 @@ const Dashboard = () => {
                   <div className="grid grid-cols-2 items-center w-full space-x-5">
                     <div className="number xl:text-[200%] text-[150%] font-bold">20</div>
                     <motion.div
-                      className="ml-auto flex items-center  text-[90%] pr-2 pl-2 w-fit h-fit rounded-full border-2 border-[#079455] text-[#079455] text-sm font-medium gap-1 "
+                      className="ml-auto flex items-center py-[1px] text-[90%] pr-2 pl-2 w-fit h-fit rounded-full border-2 border-[#079455] text-[#079455] text-sm font-medium gap-1 "
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
