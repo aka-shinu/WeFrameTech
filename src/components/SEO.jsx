@@ -42,7 +42,6 @@ const SEO = ({
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       <link rel="manifest" href="/manifest.json" />
 
-      
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
     </Head>
